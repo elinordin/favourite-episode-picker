@@ -2,6 +2,14 @@ import React, { useContext, useEffect } from 'react'
 import './App.css'
 import { Store } from './Store'
 
+interface Episode {
+  id: number,
+  image: {medium: string, original: string},
+  name: string,
+  season: number,
+  number: number
+}
+
 function App(): JSX.Element {
   const { episodes, dispatch } = useContext(Store)
 
@@ -16,10 +24,12 @@ function App(): JSX.Element {
 
   return (
     <>
-      <h1>Black mirror</h1>
-      <p>Pick your favourite episode</p>
+      <header>
+        <h1>Black mirror</h1>
+        <p>Pick your favourite episode</p>
+      </header>
       <ul className='episode-grid'>
-        {episodes.all.map((episode:any) => (
+        {episodes.all.map((episode:Episode) => (
           <li key={episode.id}>
             <img src={episode.image.medium} alt={`Black mirror episode ${episode.name}`} />
             <ul>

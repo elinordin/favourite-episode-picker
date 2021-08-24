@@ -9,7 +9,6 @@ function App():JSX.Element {
     <Fragment>
           <h1>Rick and Morty</h1>
           <p>Pick your favourite episode</p>
-          <p>Imported from my Store: {store}</p>
     </Fragment>
   )
 }

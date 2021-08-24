@@ -1,18 +1,27 @@
-import React from "react";
+import React, {useReducer} from "react";
 
-interface episodes {
-    all: [],
+interface Episodes {
+    all: []
     favourites: []
 }
 
-const initialState:episodes = {all: [], favourites: []}
+interface Action {
+    type: string
+    payload: any
+}
 
-export const Store = React.createContext<episodes>(initialState)
+const initialState:Episodes = {all: [], favourites: []}
 
-function reducer():void {
-    //TBC
+export const Store = React.createContext<Episodes | any>(initialState)
+
+function reducer(episodes: Episodes, action: Action):Episodes {
+    switch (action.type) {
+        case 'FETCH_DATA': return {...episodes, all: action.payload}
+        default: return episodes
+    }
 }
 
 export function StoreProvider(props: any):JSX.Element {
-    return <Store.Provider value={initialState}>{props.children}</Store.Provider>
+    const [episodes, dispatch] = useReducer(reducer, initialState)
+    return <Store.Provider value={{episodes, dispatch}}>{props.children}</Store.Provider>
 }

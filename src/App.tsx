@@ -24,21 +24,38 @@ function App(): JSX.Element {
         <h1>Black mirror</h1>
         <p>Pick your favourite episode</p>
       </header>
-      <ul className='episode-grid'>
-        {episodes.all.map((episode:Episode) => (
-          <li key={episode.id}>
-            <img src={episode.image.medium} alt={`Black mirror episode ${episode.name}`} />
-            <div className='episode-info'>
-              <ul>
-                <li>{episode.name}</li>
-                <li>Season: {episode.season}</li>
-                <li>Number: {episode.number}</li>
-              </ul>
-              <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.includes(episode)? '❤️' : '🖤'}</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+
+      <main>
+        <ul className='episode-grid'>
+          {episodes.all.map((episode:Episode) => (
+            <li key={episode.id}>
+              <img src={episode.image.medium} alt={`Black mirror episode ${episode.name}`} />
+              <div className='episode-info'>
+                <ul>
+                  <li>{episode.name}</li>
+                  <li>Season: {episode.season}</li>
+                  <li>Number: {episode.number}</li>
+                </ul>
+                <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.includes(episode)? '❤️' : '🖤'}</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className='favourites-sidebar'>
+          <h2>Your favourites</h2>
+          <ul>
+            {episodes.favourites.map((episode:Episode) => (
+              <li key={episode.id}>
+                <img src={episode.image.medium} alt={`Black mirror episode ${episode.name}`} />
+                <div className='favourite-info'>
+                  <p>{episode.name}</p>
+                  <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.includes(episode)? '❤️' : '🖤'}</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </main>
     </>
   )
 }

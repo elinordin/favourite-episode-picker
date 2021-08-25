@@ -21,12 +21,18 @@ header {
   border-bottom: 2px solid black;
 }
 
+main {
+  display: flex;
+  width: 100%;
+}
+
 .episode-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: auto;
   grid-gap: 1rem;
   padding: 1rem 5%;
+  width: 80%;
 }
 
 .episode-info {
@@ -35,4 +41,21 @@ header {
   width: 250px;
   text-align: left;
   margin: 0 auto;
+}
+
+.favourites-sidebar {
+  width: 20%;
+  padding: 1rem;
+  border-left: 1px solid black;
+}
+
+.favourites-sidebar h2 {
+  margin-bottom: 1rem;
+}
+
+.favourite-info {
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem ;
 }

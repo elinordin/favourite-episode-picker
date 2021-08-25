@@ -11,6 +11,8 @@ Exercise is from the 'Typescript with modern React (i.e. hooks, context, suspens
 >More in depth understanding to Typescript
 >
 >During the course I've tried creating a React app from scratch with babel and webpack which was a new thing for me and lead to more in depth understanding of what is responsible for what
+>
+>Practice with local storage
 
 ### :computer: Tech stack:
 * [React](https://reactjs.org/)

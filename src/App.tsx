@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './App.css'
 import { Store } from './Store'
 import { Episode } from './interfaces'
@@ -11,10 +11,14 @@ function App(): JSX.Element {
     return dispatch({ type: 'FETCH_DATA', payload: data._embedded.episodes })
   }
 
-  episodes.all.length === 0 && fetchData()
+  fetchData()
+
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(episodes.favourites))
+  }, [episodes])
 
   const toggleFavourite = (episode:Episode) => {
-    const episodeInFavourites = episodes.favourites.includes(episode)
+    const episodeInFavourites = episodes.favourites.some((favourite:Episode) => favourite.id === episode.id)
     return dispatch({ type: episodeInFavourites? 'REMOVE_FAV': 'ADD_FAV', payload: episode})
   }
 
@@ -36,7 +40,7 @@ function App(): JSX.Element {
                   <li>Season: {episode.season}</li>
                   <li>Number: {episode.number}</li>
                 </ul>
-                <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.includes(episode)? '❤️' : '🖤'}</button>
+                <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.some((favourite:Episode) => favourite.id === episode.id)? '❤️' : '🖤'}</button>
               </div>
             </li>
           ))}
@@ -49,7 +53,7 @@ function App(): JSX.Element {
                 <img src={episode.image.medium} alt={`Black mirror episode ${episode.name}`} />
                 <div className='favourite-info'>
                   <p>{episode.name}</p>
-                  <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.includes(episode)? '❤️' : '🖤'}</button>
+                  <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.some((favourite:Episode) => favourite.id === episode.id)? '❤️' : '🖤'}</button>
                 </div>
               </li>
             ))}

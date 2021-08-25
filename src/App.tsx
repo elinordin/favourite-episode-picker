@@ -34,7 +34,7 @@ function App(): JSX.Element {
                 <li>Season: {episode.season}</li>
                 <li>Number: {episode.number}</li>
               </ul>
-              <button type='button' onClick={() => toggleFavourite(episode)}>❤️</button>
+              <button type='button' onClick={() => toggleFavourite(episode)}>{episodes.favourites.includes(episode)? '❤️' : '🖤'}</button>
             </div>
           </li>
         ))}

@@ -9,7 +9,7 @@ function reducer(episodes: Episodes, action: Action):Episodes {
     switch (action.type) {
         case 'FETCH_DATA': return {...episodes, all: action.payload}
         case 'ADD_FAV': return {...episodes, favourites: [...episodes.favourites, action.payload]}
-        case 'REMOVE_FAV': return {...episodes, favourites: [...episodes.favourites.filter(episode => episode != action.payload)]}
+        case 'REMOVE_FAV': return {...episodes, favourites: [...episodes.favourites.filter(episode => episode !== action.payload)]}
         default: return episodes
     }
 }

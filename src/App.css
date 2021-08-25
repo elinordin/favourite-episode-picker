@@ -28,3 +28,11 @@ header {
   grid-gap: 1rem;
   padding: 1rem 5%;
 }
+
+.episode-info {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  text-align: left;
+  margin: 0 auto;
+}

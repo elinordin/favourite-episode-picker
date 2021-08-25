@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import './App.css'
 import { Store } from './Store'
 
@@ -18,9 +18,11 @@ function App(): JSX.Element {
     return dispatch({ type: 'FETCH_DATA', payload: data._embedded.episodes })
   }
 
-  useEffect(() => {
-    episodes.all.length === 0 && fetchData()
-  })
+  episodes.all.length === 0 && fetchData()
+
+  const toggleFavourite = (episode:Episode) => {
+    return dispatch({ type: 'ADD_FAV', payload: episode})
+  }
 
   return (
     <>
@@ -32,11 +34,14 @@ function App(): JSX.Element {
         {episodes.all.map((episode:Episode) => (
           <li key={episode.id}>
             <img src={episode.image.medium} alt={`Black mirror episode ${episode.name}`} />
-            <ul>
-              <li>{episode.name}</li>
-              <li>Season: {episode.season}</li>
-              <li>Number: {episode.number}</li>
-            </ul>
+            <div className='episode-info'>
+              <ul>
+                <li>{episode.name}</li>
+                <li>Season: {episode.season}</li>
+                <li>Number: {episode.number}</li>
+              </ul>
+              <button type='button' onClick={() => toggleFavourite(episode)}>❤️</button>
+            </div>
           </li>
         ))}
       </ul>

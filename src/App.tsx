@@ -1,14 +1,7 @@
 import React, { useContext } from 'react'
 import './App.css'
 import { Store } from './Store'
-
-interface Episode {
-  id: number,
-  image: {medium: string, original: string},
-  name: string,
-  season: number,
-  number: number
-}
+import { Episode } from './interfaces'
 
 function App(): JSX.Element {
   const { episodes, dispatch } = useContext(Store)
@@ -21,7 +14,8 @@ function App(): JSX.Element {
   episodes.all.length === 0 && fetchData()
 
   const toggleFavourite = (episode:Episode) => {
-    return dispatch({ type: 'ADD_FAV', payload: episode})
+    const episodeInFavourites = episodes.favourites.includes(episode)
+    return dispatch({ type: episodeInFavourites? 'REMOVE_FAV': 'ADD_FAV', payload: episode})
   }
 
   return (

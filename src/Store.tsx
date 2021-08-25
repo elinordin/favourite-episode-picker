@@ -1,22 +1,5 @@
 import React, {useReducer} from "react";
-
-interface Episodes {
-    all: Episode[]
-    favourites: Episode[]
-}
-
-interface Episode {
-    id: number,
-    image: {medium: string, original: string},
-    name: string,
-    season: number,
-    number: number
-  }
-
-interface Action {
-    type: string
-    payload: any
-}
+import { Episodes, Action } from './interfaces'
 
 const initialState:Episodes = {all: [], favourites: []}
 
@@ -26,6 +9,7 @@ function reducer(episodes: Episodes, action: Action):Episodes {
     switch (action.type) {
         case 'FETCH_DATA': return {...episodes, all: action.payload}
         case 'ADD_FAV': return {...episodes, favourites: [...episodes.favourites, action.payload]}
+        case 'REMOVE_FAV': return {...episodes, favourites: [...episodes.favourites.filter(episode => episode != action.payload)]}
         default: return episodes
     }
 }

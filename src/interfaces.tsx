@@ -1,3 +1,4 @@
+
 export interface Episodes {
     all: Episode[]
     favourites: Episode[]
@@ -13,5 +14,5 @@ export interface Episode {
 
  export interface Action {
     type: string
-    payload: any
+    payload: Episode[] | any
 }

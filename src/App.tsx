@@ -22,7 +22,7 @@ function App(): JSX.Element {
     <>
       <header>
         <h1>Black mirror</h1>
-        <p>Pick your favourite episode</p>
+        <p>Pick your favourite episodes</p>
       </header>
 
       <main>

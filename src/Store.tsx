@@ -14,7 +14,7 @@ function reducer(episodes: Episodes, action: Action):Episodes {
     }
 }
 
-export function StoreProvider(props: any):JSX.Element {
+export function StoreProvider({children}: JSX.ElementChildrenAttribute):JSX.Element {
     const [episodes, dispatch] = useReducer(reducer, initialState)
-    return <Store.Provider value={{episodes, dispatch}}>{props.children}</Store.Provider>
+    return <Store.Provider value={{episodes, dispatch}}>{children}</Store.Provider>
 }
